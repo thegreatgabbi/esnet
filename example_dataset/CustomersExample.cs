@@ -24,7 +24,12 @@ namespace example_dataset
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Display data from Customers table by creating DataSet, using DataAdapter to .Fill it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoadButton_Click(object sender, EventArgs e)
         {
             // create connection string
             string conS = "data source=(local); integrated security=SSPI; initial catalog=Dafesty";
@@ -34,39 +39,51 @@ namespace example_dataset
             cm.CommandText = "Select CustomerID, CustomerName, MemberCategory from Customers";
             cm.Connection = cn;
 
-            // create data adapter
+            // create DataAdapter
             da = new SqlDataAdapter(cm);
-            cmb = new SqlCommandBuilder(da);
 
-            // create new data set
+            // create DataSet
             ds = new DataSet();
-            // creates scheme, takes data and fills it in
+            // populates DataSet with data from Customers
             da.Fill(ds, "Customers");
 
-            // display number of tables in the label
+            // display table entry in label1
             // label1.Text = ds.Tables[0].Rows.Count.ToString();
-            // label1.Text = ds.Tables[0].Rows[5][1].ToString();
+            label1.Text = ds.Tables[0].Rows[5][1].ToString();
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Assumes data has been loaded into DataSet. `Update`s the DB with the DataSet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
-            // label1.Text = cmb.GetInsertCommand().CommandText;
-
-            ds.Tables[0].Rows[0][2] = "C";
+            // Make changes to your DataSet
+            ds.Tables[0].Rows[5][1] = "Stephen Ou";
             label1.Text = ds.Tables[0].Rows[5][1].ToString();
 
             da.Update(ds, "Customers");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Assumes data has been loaded into DataSet. Creates a 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InsertButton_Click(object sender, EventArgs e)
         {
-            DataRow r = ds.Tables["Customers"].NewRow(); // Creates a new dataRow
+            // Create a new row (haven't change DataSet yet!)
+            DataRow r = ds.Tables["Customers"].NewRow();
+            // Update corresponding fields
             r["CustomerID"] = 1007;
             r["CustomerName"] = "Venkat";
             r["MemberCategory"] = "C";
 
-            ds.Tables["Customers"].Rows.Add(r); // add the dataRow to DataSet
+            // Add the row to your DataSet
+            ds.Tables["Customers"].Rows.Add(r);
+            // Update the DB with your DataSet
             da.Update(ds, "Customers");
         }
     }

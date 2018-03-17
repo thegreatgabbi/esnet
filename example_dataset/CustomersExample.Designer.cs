@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.LoadButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.UpdateButton = new System.Windows.Forms.Button();
+            this.InsertButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // LoadButton
             // 
-            this.button1.Location = new System.Drawing.Point(96, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(331, 64);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Load data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.LoadButton.Location = new System.Drawing.Point(96, 448);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(331, 64);
+            this.LoadButton.TabIndex = 0;
+            this.LoadButton.Text = "Load data";
+            this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // label1
             // 
@@ -54,38 +54,38 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
-            // button2
+            // UpdateButton
             // 
-            this.button2.Location = new System.Drawing.Point(96, 528);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(331, 64);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Update data";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.UpdateButton.Location = new System.Drawing.Point(96, 528);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(331, 64);
+            this.UpdateButton.TabIndex = 2;
+            this.UpdateButton.Text = "Update data";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
-            // button3
+            // InsertButton
             // 
-            this.button3.Location = new System.Drawing.Point(96, 608);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(336, 64);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Insert data";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.InsertButton.Location = new System.Drawing.Point(96, 608);
+            this.InsertButton.Name = "InsertButton";
+            this.InsertButton.Size = new System.Drawing.Size(336, 64);
+            this.InsertButton.TabIndex = 3;
+            this.InsertButton.Text = "Insert data";
+            this.InsertButton.UseVisualStyleBackColor = true;
+            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
             // 
-            // Form1
+            // CustomersExample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1700, 807);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.InsertButton);
+            this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LoadButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.Name = "Form1";
+            this.Name = "CustomersExample";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -94,10 +94,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button UpdateButton;
+        private System.Windows.Forms.Button InsertButton;
     }
 }
 

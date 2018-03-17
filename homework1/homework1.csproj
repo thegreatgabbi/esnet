@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FEBE838B-E7D2-4508-8CD9-00BD3BE15206}</ProjectGuid>
+    <ProjectGuid>{1D6CF192-4F98-4093-9324-C28CB1148BFC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>example_dataset</RootNamespace>
-    <AssemblyName>example_dataset</AssemblyName>
+    <RootNamespace>homework1</RootNamespace>
+    <AssemblyName>homework1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,9 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>example_dataset.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,18 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="CustomersExample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomersExample.Designer.cs">
-      <DependentUpon>CustomersExample.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CustomersExample.resx">
-      <DependentUpon>CustomersExample.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="CustomersTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomersTool.Designer.cs">
+      <DependentUpon>CustomersTool.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -69,6 +62,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomersTool.resx">
+      <DependentUpon>CustomersTool.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
