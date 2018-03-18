@@ -17,6 +17,8 @@ namespace homework1
         SqlCommand cm;
         SqlDataAdapter da;
         DataSet ds;
+        SqlCommandBuilder cmb;
+
         public CustomersTool()
         {
             InitializeComponent();
@@ -35,23 +37,26 @@ namespace homework1
             da.Fill(ds, "Customers");
             // Define CustomerID as primary key
             ds.Tables["Customers"].PrimaryKey = new DataColumn[] { ds.Tables["Customers"].Columns["CustomerID"] };
+            // Create new Command Builder
+            cmb = new SqlCommandBuilder(da);
         }
 
         /// <summary>
-        /// Loads data from the DB
+        /// Gets the CustomerID and gets CustomerName and MemberCategory from the DataSet.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            // TODO: search CustomerID column for value in CustomerIDTextBox
-            string cid = CustomerIDTextBox.Text;
+            string cId = CustomerIDTextBox.Text;
+            string cName = CustomerNameTextBox.Text;
+            string memCat = MemberCategoryTextBox.Text;
 
-            if (cid == "")
+            if (cId == "")
             {
                 MessageBox.Show("Please enter a Customer ID.");
             } else {
-                DataRow cidRow = ds.Tables["Customers"].Rows.Find(cid);
+                DataRow cidRow = ds.Tables["Customers"].Rows.Find(cId);
                 if (cidRow != null)
                 {
                     CustomerIDTextBox.Text = cidRow["CustomerID"].ToString();
@@ -61,18 +66,41 @@ namespace homework1
                 {
                     MessageBox.Show("Customer ID not found.");
                 }
-                
             }
         }
 
         /// <summary>
-        /// Update CustomerName or MemberCategory of CustomerID
+        /// Update CustomerName and/or MemberCategory of CustomerID
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void UpdateButton_Click(object sender, EventArgs e)
         {
+            string cId = CustomerIDTextBox.Text;
+            string cName = CustomerNameTextBox.Text;
+            string memCat = MemberCategoryTextBox.Text;
 
+            if (cId == "")
+            {
+                MessageBox.Show("Please enter a Customer ID.");
+            }
+            else
+            {
+                DataRow dr = ds.Tables["Customers"].Rows.Find(cId);
+                if (dr != null)
+                {
+                    dr["CustomerName"] = CustomerNameTextBox.Text;
+                    dr["MemberCategory"] = MemberCategoryTextBox.Text;
+
+                    da.Update(ds, "Customers");
+
+                    MessageBox.Show("Customer ID " + cId + " updated.");
+                }
+                else
+                {
+                    MessageBox.Show("Customer ID not found.");
+                }
+            }
         }
 
         /// <summary>
@@ -82,17 +110,83 @@ namespace homework1
         /// <param name="e"></param>
         private void InsertButton_Click(object sender, EventArgs e)
         {
+            string cId = CustomerIDTextBox.Text;
+            string cName = CustomerNameTextBox.Text;
+            string memCat = MemberCategoryTextBox.Text;
 
+            if (cId == "")
+            {
+                MessageBox.Show("Please enter a Customer ID.");
+            }
+            else
+            {
+                DataRow dr = ds.Tables["Customers"].Rows.Find(cId);
+                if (dr == null)
+                {
+                    if (cId != "" &&
+                        cName != "" &&
+                        memCat != "")
+                    {
+                        // create new row
+                        DataRow r = ds.Tables["Customers"].NewRow();
+                        r["CustomerID"] = cId;
+                        r["CustomerName"] = cName;
+                        r["MemberCategory"] = memCat;
+
+                        // add row to DataSet
+                        ds.Tables["Customers"].Rows.Add(r);
+                        // update DB
+                        da.Update(ds, "Customers");
+
+                        MessageBox.Show("Customer ID " + cId + " inserted.");
+                    }
+                    if (cName == "")
+                    {
+                        MessageBox.Show("Please enter a Customer Name.");
+                    }
+                    if (memCat == "")
+                    {
+                        MessageBox.Show("Please enter a Member Category.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Customer ID already exists.");
+                }
+            }
         }
 
         /// <summary>
-        /// Given a CustomerID, deletes the row
+        /// Given a CustomerID, deletes the row.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            string cId = CustomerIDTextBox.Text;
+            string cName = CustomerNameTextBox.Text;
+            string memCat = MemberCategoryTextBox.Text;
 
+            if (cId == "")
+            {
+                MessageBox.Show("Please enter a Customer ID.");
+            }
+            else
+            {
+                DataRow dr = ds.Tables["Customers"].Rows.Find(cId);
+                if (dr != null)
+                {
+                    // Delete Row
+                    dr.Delete();
+                    // Update DB
+                    da.Update(ds, "Customers");
+                    MessageBox.Show("Customer ID " + cId + " deleted.");
+                }
+                else
+                {
+                    MessageBox.Show("Customer ID not found.");
+                }
+            }
         }
 
         /// <summary>
