@@ -31,25 +31,28 @@ namespace example_dataset
         /// <param name="e"></param>
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            // create connection string
-            string conS = "data source=(local); integrated security=SSPI; initial catalog=Dafesty";
-            // create connection object
-            cn = new SqlConnection(conS);
-            cm = new SqlCommand();
-            cm.CommandText = "Select CustomerID, CustomerName, MemberCategory from Customers";
-            cm.Connection = cn;
+            //// create connection string
+            //string conS = "data source=(local); integrated security=SSPI; initial catalog=Dafesty";
+            //// create connection object
+            //cn = new SqlConnection(conS);
+            //cm = new SqlCommand();
+            //cm.CommandText = "Select CustomerID, CustomerName, MemberCategory from Customers";
+            //cm.Connection = cn;
 
-            // create DataAdapter
-            da = new SqlDataAdapter(cm);
+            //// create DataAdapter
+            //da = new SqlDataAdapter(cm);
 
-            // create DataSet
-            ds = new DataSet();
-            // populates DataSet with data from Customers
-            da.Fill(ds, "Customers");
+            //// create DataSet
+            //ds = new DataSet();
+            //// populates DataSet with data from Customers
+            //da.Fill(ds, "Customers");
 
-            // display table entry in label1
-            // label1.Text = ds.Tables[0].Rows.Count.ToString();
-            label1.Text = ds.Tables[0].Rows[5][1].ToString();
+            //// display table entry in label1
+            //// label1.Text = ds.Tables[0].Rows.Count.ToString();
+            //label1.Text = ds.Tables[0].Rows[5][1].ToString();
+
+
+            ds.Tables["Customers"].Rows.Find("1000");
 
         }
 
