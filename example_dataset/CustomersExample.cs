@@ -17,7 +17,6 @@ namespace example_dataset
         SqlCommand cm;
         SqlDataAdapter da;
         DataSet ds;
-        SqlCommandBuilder cmb;
 
         public CustomersExample()
         {

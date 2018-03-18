@@ -33,6 +33,8 @@ namespace homework1
             // Create DataSet
             ds = new DataSet();
             da.Fill(ds, "Customers");
+            // Define CustomerID as primary key
+            ds.Tables["Customers"].PrimaryKey = new DataColumn[] { ds.Tables["Customers"].Columns["CustomerID"] };
         }
 
         /// <summary>
@@ -47,23 +49,19 @@ namespace homework1
 
             if (cid == "")
             {
-                MessageBox.Show("Please enter a Customer ID");
+                MessageBox.Show("Please enter a Customer ID.");
             } else {
-                bool hasID = false;
-                foreach (DataRow i in ds.Tables["Customers"].Rows)
+                DataRow cidRow = ds.Tables["Customers"].Rows.Find(cid);
+                if (cidRow != null)
                 {
-                    if (i["CustomerID"].ToString() == cid)
-                    {
-                        hasID = true;
-                        CustomerIDTextBox.Text = i["CustomerID"].ToString();
-                        CustomerNameTextBox.Text = i["CustomerName"].ToString();
-                        MemberCategoryTextBox.Text = i["MemberCategory"].ToString();
-                    }
-                }
-                if (hasID == false)
+                    CustomerIDTextBox.Text = cidRow["CustomerID"].ToString();
+                    CustomerNameTextBox.Text = cidRow["CustomerName"].ToString();
+                    MemberCategoryTextBox.Text = cidRow["MemberCategory"].ToString();
+                } else
                 {
                     MessageBox.Show("Customer ID not found.");
                 }
+                
             }
         }
 
