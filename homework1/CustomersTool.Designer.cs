@@ -100,7 +100,7 @@
             // 
             this.LoadButton.Location = new System.Drawing.Point(144, 368);
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(256, 80);
+            this.LoadButton.Size = new System.Drawing.Size(256, 64);
             this.LoadButton.TabIndex = 6;
             this.LoadButton.Text = "Load";
             this.LoadButton.UseVisualStyleBackColor = true;
@@ -110,7 +110,7 @@
             // 
             this.UpdateButton.Location = new System.Drawing.Point(416, 368);
             this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(256, 80);
+            this.UpdateButton.Size = new System.Drawing.Size(256, 64);
             this.UpdateButton.TabIndex = 7;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = true;
@@ -118,9 +118,9 @@
             // 
             // InsertButton
             // 
-            this.InsertButton.Location = new System.Drawing.Point(144, 464);
+            this.InsertButton.Location = new System.Drawing.Point(144, 448);
             this.InsertButton.Name = "InsertButton";
-            this.InsertButton.Size = new System.Drawing.Size(256, 80);
+            this.InsertButton.Size = new System.Drawing.Size(256, 64);
             this.InsertButton.TabIndex = 8;
             this.InsertButton.Text = "Insert";
             this.InsertButton.UseVisualStyleBackColor = true;
@@ -128,9 +128,9 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(416, 464);
+            this.DeleteButton.Location = new System.Drawing.Point(416, 448);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(256, 80);
+            this.DeleteButton.Size = new System.Drawing.Size(256, 64);
             this.DeleteButton.TabIndex = 9;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
@@ -138,45 +138,49 @@
             // 
             // PrevButton
             // 
-            this.PrevButton.Location = new System.Drawing.Point(64, 464);
+            this.PrevButton.Location = new System.Drawing.Point(224, 528);
             this.PrevButton.Name = "PrevButton";
-            this.PrevButton.Size = new System.Drawing.Size(64, 80);
+            this.PrevButton.Size = new System.Drawing.Size(64, 64);
             this.PrevButton.TabIndex = 10;
             this.PrevButton.Text = "<";
             this.PrevButton.UseVisualStyleBackColor = true;
+            this.PrevButton.Click += new System.EventHandler(this.PrevButton_Click);
             // 
             // NextButton
             // 
-            this.NextButton.Location = new System.Drawing.Point(688, 464);
+            this.NextButton.Location = new System.Drawing.Point(528, 528);
             this.NextButton.Name = "NextButton";
-            this.NextButton.Size = new System.Drawing.Size(64, 80);
+            this.NextButton.Size = new System.Drawing.Size(64, 64);
             this.NextButton.TabIndex = 11;
             this.NextButton.Text = ">";
             this.NextButton.UseVisualStyleBackColor = true;
+            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
             // LastButton
             // 
-            this.LastButton.Location = new System.Drawing.Point(688, 368);
+            this.LastButton.Location = new System.Drawing.Point(608, 528);
             this.LastButton.Name = "LastButton";
-            this.LastButton.Size = new System.Drawing.Size(64, 80);
+            this.LastButton.Size = new System.Drawing.Size(64, 64);
             this.LastButton.TabIndex = 12;
             this.LastButton.Text = ">>";
             this.LastButton.UseVisualStyleBackColor = true;
+            this.LastButton.Click += new System.EventHandler(this.LastButton_Click);
             // 
             // FirstButton
             // 
-            this.FirstButton.Location = new System.Drawing.Point(64, 368);
+            this.FirstButton.Location = new System.Drawing.Point(144, 528);
             this.FirstButton.Name = "FirstButton";
-            this.FirstButton.Size = new System.Drawing.Size(64, 80);
+            this.FirstButton.Size = new System.Drawing.Size(64, 64);
             this.FirstButton.TabIndex = 13;
             this.FirstButton.Text = "<<";
             this.FirstButton.UseVisualStyleBackColor = true;
+            this.FirstButton.Click += new System.EventHandler(this.FirstButton_Click);
             // 
             // SearchGroupBox
             // 
             this.SearchGroupBox.Controls.Add(this.SearchTextBox);
             this.SearchGroupBox.Controls.Add(this.FindButton);
-            this.SearchGroupBox.Location = new System.Drawing.Point(144, 576);
+            this.SearchGroupBox.Location = new System.Drawing.Point(144, 640);
             this.SearchGroupBox.Name = "SearchGroupBox";
             this.SearchGroupBox.Size = new System.Drawing.Size(528, 96);
             this.SearchGroupBox.TabIndex = 14;
