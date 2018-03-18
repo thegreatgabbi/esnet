@@ -43,29 +43,28 @@ namespace homework1
         private void LoadButton_Click(object sender, EventArgs e)
         {
             // TODO: search CustomerID column for value in CustomerIDTextBox
-            // create a new SqlDataReader
-            cn.Open();
-            SqlDataReader rd = cm.ExecuteReader();
-            // read each line
-            bool hasID = false;
-            while(rd.Read())
+            string cid = CustomerIDTextBox.Text;
+
+            if (cid == "")
             {
-                // if the CustomerID is found, display the row values
-                if (rd["CustomerID"].ToString() == CustomerIDTextBox.Text)
+                MessageBox.Show("Please enter a Customer ID");
+            } else {
+                bool hasID = false;
+                foreach (DataRow i in ds.Tables["Customers"].Rows)
                 {
-                    hasID = true;
-                    CustomerIDTextBox.Text = rd["CustomerID"].ToString();
-                    CustomerNameTextBox.Text = rd["CustomerName"].ToString();
-                    MemberCategoryTextBox.Text = rd["MemberCategory"].ToString();
+                    if (i["CustomerID"].ToString() == cid)
+                    {
+                        hasID = true;
+                        CustomerIDTextBox.Text = i["CustomerID"].ToString();
+                        CustomerNameTextBox.Text = i["CustomerName"].ToString();
+                        MemberCategoryTextBox.Text = i["MemberCategory"].ToString();
+                    }
+                }
+                if (hasID == false)
+                {
+                    MessageBox.Show("Customer ID not found.");
                 }
             }
-            if (hasID == false)
-            {
-                CustomerNameTextBox.Text = "";
-                MemberCategoryTextBox.Text = "";
-                MessageBox.Show("Customer ID not found.");
-            }
-            cn.Close();
         }
 
         /// <summary>
