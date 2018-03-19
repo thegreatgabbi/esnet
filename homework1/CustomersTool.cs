@@ -110,7 +110,7 @@ namespace homework1
         }
 
         /// <summary>
-        /// Creates a new row with CustomerID, CustomerName and MemberCategory
+        /// Creates a new row with CustomerID, CustomerName and MemberCategory.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -143,6 +143,9 @@ namespace homework1
                         dt.Rows.Add(r);
                         // update DB
                         da.Update(ds, "Customers");
+                        // reorder datasets
+                        ds.Clear();
+                        da.Fill(ds, "Customers");
 
                         MessageBox.Show("Customer ID " + cId + " inserted.");
                     }
@@ -182,15 +185,22 @@ namespace homework1
                 DataRow dr = dt.Rows.Find(cId);
                 if (dr != null)
                 {
-                    // Delete Row
-                    dr.Delete();
-                    // Update DB
-                    da.Update(ds, "Customers");
-                    MessageBox.Show("Customer ID " + cId + " deleted.");
-                    // Clear field
-                    CustomerIDTextBox.Text = "";
-                    CustomerNameTextBox.Text = "";
-                    MemberCategoryTextBox.Text = "";
+                    try
+                    {
+                        // Delete Row
+                        dr.Delete();
+                        // Update DB
+                        da.Update(ds, "Customers");
+
+                        MessageBox.Show("Customer ID " + cId + " deleted.");
+                        // Clear field
+                        CustomerIDTextBox.Text = "";
+                        CustomerNameTextBox.Text = "";
+                        MemberCategoryTextBox.Text = "";
+                    }
+                    catch (System.Data.SqlClient.SqlException) {
+                        MessageBox.Show("Customer ID " + cId + " cannot be deleted.");
+                    }
                 }
                 else
                 {
@@ -211,12 +221,10 @@ namespace homework1
                 bool hasName = false;
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (SearchTextBox.Text == row["CustomerName"].ToString())
+                    if (SearchTextBox.Text.Trim() == row["CustomerName"].ToString())
                     {
                         hasName = true;
-                        CustomerIDTextBox.Text = row["CustomerID"].ToString();
-                        CustomerNameTextBox.Text = row["CustomerName"].ToString();
-                        MemberCategoryTextBox.Text = row["MemberCategory"].ToString();
+                        PopulateTextBox(row);
                     }
                 }
                 if (hasName == false)
@@ -233,18 +241,14 @@ namespace homework1
         private void FirstButton_Click(object sender, EventArgs e)
         {
             DataRow dr = dt.Rows[0];
-            CustomerIDTextBox.Text = dr["CustomerID"].ToString();
-            CustomerNameTextBox.Text = dr["CustomerName"].ToString();
-            MemberCategoryTextBox.Text = dr["MemberCategory"].ToString();
+            PopulateTextBox(dr);
         }
 
         private void LastButton_Click(object sender, EventArgs e)
         {
             int count = dt.Rows.Count;
             DataRow dr = dt.Rows[count-1];
-            CustomerIDTextBox.Text = dr["CustomerID"].ToString();
-            CustomerNameTextBox.Text = dr["CustomerName"].ToString();
-            MemberCategoryTextBox.Text = dr["MemberCategory"].ToString();
+            PopulateTextBox(dr);
         }
 
         private void PrevButton_Click(object sender, EventArgs e)
@@ -261,15 +265,16 @@ namespace homework1
                     newRow = dt.Rows[GetCustomerIndex() - 1];
                 }
                 // Display fields
-                CustomerIDTextBox.Text = newRow["CustomerID"].ToString();
-                CustomerNameTextBox.Text = newRow["CustomerName"].ToString();
-                MemberCategoryTextBox.Text = newRow["MemberCategory"].ToString();
+                PopulateTextBox(newRow);
             }
             else
             {
                 MessageBox.Show("Enter a Customer ID.");
             }
         }
+
+
+
         private void NextButton_Click(object sender, EventArgs e)
         {
             if (CustomerIDTextBox.Text != "")
@@ -284,9 +289,7 @@ namespace homework1
                     newRow = dt.Rows[GetCustomerIndex() + 1];
                 }
                 // Display fields
-                CustomerIDTextBox.Text = newRow["CustomerID"].ToString();
-                CustomerNameTextBox.Text = newRow["CustomerName"].ToString();
-                MemberCategoryTextBox.Text = newRow["MemberCategory"].ToString();
+                PopulateTextBox(newRow);
             }
             else
             {
@@ -299,6 +302,13 @@ namespace homework1
             string cId = CustomerIDTextBox.Text;
             DataRow dr = dt.Rows.Find(cId);
             return dt.Rows.IndexOf(dr);
+        }
+
+        private void PopulateTextBox(DataRow newRow)
+        {
+            CustomerIDTextBox.Text = newRow["CustomerID"].ToString();
+            CustomerNameTextBox.Text = newRow["CustomerName"].ToString();
+            MemberCategoryTextBox.Text = newRow["MemberCategory"].ToString();
         }
 
     }
