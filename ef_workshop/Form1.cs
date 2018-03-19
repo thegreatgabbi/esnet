@@ -12,25 +12,245 @@ namespace ef_workshop
 {
     public partial class Form1 : Form
     {
+        DafestyEntities context;
         public Form1()
         {
             InitializeComponent();
+            context = new DafestyEntities();
         }
+        /// <summary>
+        /// Retrieve all data from the Movies table with a LINQ query.
+        /// </summary>
         private void Q1_LINQ()
         {
-            MessageBox.Show("Q1 LINQ");
+            //write LINQ Query
+            var q = from x in context.Movie select x;
+
+            List<Movie> lst = q.ToList();
+            dataGridView1.DataSource = lst;
         }
+        /// <summary>
+        /// Retrieve all data from the Movies table with a Lambda expression.
+        /// </summary>
+        private void Q1_Lambda()
+        {
+            //write lambda expression
+            List<Movie> lst = context.Movie.ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all Movies and display the data in Ascending order of Movie Title with a LINQ query.
+        /// </summary>
+        private void Q2_LINQ()
+        {
+            //write LINQ Query
+            var q = from x in context.Movie orderby x.MovieTitle ascending select x;
+
+            List<Movie> lst = q.ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all Movies and display the data in Ascending order of Movie Title.
+        /// </summary>
+        private void Q2_Lambda()
+        {
+            //write lambda expression
+            List<Movie> lst = context.Movie.OrderBy(x => x.MovieTitle).ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all Movies and display the data in Descending order of Rental Price with a LINQ query.
+        /// </summary>
+        private void Q3_LINQ()
+        {
+            //write LINQ Query
+            var q = from x in context.Movie orderby x.RentalPrice descending select x;
+
+            List<Movie> lst = q.ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all Movies and display the data in Descending order of Rental Price.
+        /// </summary>
+        private void Q3_Lambda()
+        {
+            //write lambda expression
+            List<Movie> lst = context.Movie.OrderByDescending(x => x.RentalPrice).ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all R rated movies with a LINQ query.
+        /// </summary>
+        private void Q4_LINQ()
+        {
+            //write LINQ Query
+            var q = from x in context.Movie where x.Rating == "R" select x;
+
+            List<Movie> lst = q.ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all R rated movies with a Lambda expression.
+        /// </summary>
+        private void Q4_Lambda()
+        {
+            //write lambda expression
+            List<Movie> lst = context.Movie.Where(x => x.Rating == "R").ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all Science Fiction movies produced by Warner with a LINQ query.
+        /// </summary>
+        private void Q5_LINQ()
+        {
+            //write LINQ Query
+            var q = from x in context.Movie where x.MovieType == "Sci-fi" && x.ProducerID == "Warner" select x;
+
+            List<Movie> lst = q.ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Retrieve all Science Fiction movies produced by Warner with a Lambda expression.
+        /// </summary>
+        private void Q5_Lambda()
+        {
+            //write lambda expression
+            List<Movie> lst = context.Movie.Where(x => x.MovieType == "Sci-fi" && x.ProducerID == "Warner").ToList();
+            dataGridView1.DataSource = lst;
+        }
+        /// <summary>
+        /// Get the number of Action Movies in the Store with a LINQ query.
+        /// </summary>
+        private void Q6_LINQ()
+        {
+            //write LINQ Query
+            int numAction = (from x in context.Movie where x.MovieType == "Action" select x).Count();
+
+            label1.Text = numAction.ToString();
+        }
+        /// <summary>
+        /// Get the number of Action Movies in the Store with a Lambda expression.
+        /// </summary>
+        private void Q6_Lambda()
+        {
+            //write lambda expression
+            int numAction = context.Movie.Where(x => x.MovieType == "Action").Count();
+            dataGridView1.DataSource = numAction;
+        }
+        /// <summary>
+        /// Get the number of copies procured for Action movies (number of copies would mean the total stock of all action movies) with a LINQ query.
+        /// </summary>
+        private void Q7_LINQ()
+        {
+            //write LINQ Query
+            int totalStock = (from x in context.Movie where x.MovieType == "Action" select (int)x.TotalStock).Sum();
+
+            label1.Text = totalStock.ToString();
+        }
+        /// <summary>
+        /// Get the number of copies procured for Action movies (number of copies would mean the total stock of all action movies) with a Lambda expression.
+        /// </summary>
+        private void Q7_Lambda()
+        {
+            //write lambda expression
+            int totalStock = context.Movie.Where(x => x.MovieType == "Action").Sum(y => (int)y.TotalStock);
+            label1.Text = totalStock.ToString();
+        }
+        /// <summary>
+        /// Find the average price of Comedy movies with a LINQ query.
+        /// </summary>
+        private void Q8_LINQ()
+        {
+            //write LINQ Query
+            var q = (from x in context.Movie where x.MovieType == "Comedy" select x.RentalPrice).Average();
+
+            label1.Text = q.ToString();
+        }
+        /// <summary>
+        /// Find the average price of Comedy movies with a Lambda expression.
+        /// </summary>
+        private void Q8_Lambda()
+        {
+            //write lambda expression
+            float? avgRental = context.Movie.Where(x => x.MovieType == "Comedy").Average(x => x.RentalPrice);
+
+            label1.Text = avgRental.ToString();
+        }
+
 
         private void LINQQueryButton_Click(object sender, EventArgs e)
         {
-            switch (ExerciseComboBox.SelectedItem.ToString())
+
+            switch (ExerciseComboBox.Text)
             {
                 case "1":
                     Q1_LINQ();
                     break;
+                case "2":
+                    Q2_LINQ();
+                    break;
+                case "3":
+                    Q3_LINQ();
+                    break;
+                case "4":
+                    Q4_LINQ();
+                    break;
+                case "5":
+                    Q5_LINQ();
+                    break;
+                case "6":
+                    Q6_LINQ();
+                    break;
+                case "7":
+                    Q7_LINQ();
+                    break;
+                case "8":
+                    Q8_LINQ();
+                    break;
                 default:
                     MessageBox.Show("Please select an exercise number.");
                     break;
+            }
+            if (ExerciseComboBox.Text != "")
+            {
+                toolStripStatusLabel1.Text = "Question " + ExerciseComboBox.Text + " (LINQ Query) selected.";
+            }
+        }
+        private void LambdaQueryButton_Click(object sender, EventArgs e)
+        {
+            switch (ExerciseComboBox.Text)
+            {
+                case "1":
+                    Q1_Lambda();
+                    break;
+                case "2":
+                    Q2_Lambda();
+                    break;
+                case "3":
+                    Q3_Lambda();
+                    break;
+                case "4":
+                    Q4_Lambda();
+                    break;
+                case "5":
+                    Q5_Lambda();
+                    break;
+                case "6":
+                    Q6_Lambda();
+                    break;
+                case "7":
+                    Q7_Lambda();
+                    break;
+                case "8":
+                    Q8_Lambda();
+                    break;
+                default:
+                    MessageBox.Show("Please select an exercise number.");
+                    break;
+            }
+            if (ExerciseComboBox.Text != "")
+            {
+                toolStripStatusLabel1.Text = "Question " + ExerciseComboBox.Text + " (Lambda function) selected.";
             }
         }
     }
