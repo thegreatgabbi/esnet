@@ -16,7 +16,7 @@ namespace example_entityframework
     {
         public string CustomerID { get; set; }
         public string CustomerName { get; set; }
-        public string MemberType { get; set; }
+        public string MemberRating { get; set; }
         public Nullable<int> Age { get; set; }
         public Nullable<decimal> AmountSpent { get; set; }
         public string Address { get; set; }

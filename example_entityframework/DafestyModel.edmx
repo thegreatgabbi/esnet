@@ -40,7 +40,7 @@
           </Key>
           <Property Name="CustomerID" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MemberType" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="MemberRating" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Age" Type="Int32" />
           <Property Name="AmountSpent" Type="Decimal" Precision="8" Scale="2" />
           <Property Name="Address" Type="String" MaxLength="65" FixedLength="false" Unicode="true" />
@@ -69,7 +69,7 @@
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="MemberType" ColumnName="MemberCategory" />
+                <ScalarProperty Name="MemberRating" ColumnName="MemberCategory" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="AmountSpent" ColumnName="AmountSpent" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

@@ -41,5 +41,37 @@ namespace example_entityframework
             Customer c = q.First();
             label1.Text = c.CustomerName;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DafestyEntities context = new DafestyEntities();
+
+            var q = from x in context.Customers where x.MemberRating == "A" && x.CustomerName.Substring(0,1) == "R" orderby x.CustomerName select x;
+            List<Customer> lst = q.ToList();
+            dataGridView1.DataSource = lst;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DafestyEntities context = new DafestyEntities();
+
+            //var q = from x in context.Customers select x;
+
+            //Customer c = context.Customers.Where(x => x.CustomerID == "1111").First();
+
+            //label1.Text = c.CustomerName;
+
+            List<Customer> lst = context.Customers.Where(x => x.MemberRating == "A").ToList();
+            lst = context.Customers.OrderBy(x => x.CustomerName).ToList();
+            lst = context.Customers.Where(y => y.MemberRating == "A").OrderBy(x => x.CustomerName).ToList();
+            lst = context.Customers.Where(y => y.MemberRating == "A" && y.CustomerName.Substring(0,1) == "B").ToList();
+
+            dataGridView1.DataSource = lst;
+
+            int noofAmem = context.Customers.Count(x => x.MemberRating == "A");
+            label1.Text = (noofAmem).ToString();
+            decimal? d = context.Customers.Sum(x => x.AmountSpent); // nullable datatypes
+            label1.Text = (d).ToString();
+        }
     }
 }

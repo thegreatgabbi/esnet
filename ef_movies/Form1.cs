@@ -26,11 +26,11 @@ namespace ef_movies
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            // get the data context
+            // get the entity collection
             DafestyEntities context = new DafestyEntities();
 
             //short vc = Convert.ToInt16(VideoCodeTextBox.Text.ToString());
-            // write your LINQ query
+            // queries a entity collection! Not the database.
             var q = from x in context.Movie where x.VideoCode == 1 select x;
 
             var m = q.First();
