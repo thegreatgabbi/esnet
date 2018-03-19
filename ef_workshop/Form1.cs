@@ -26,8 +26,14 @@ namespace ef_workshop
             //write LINQ Query
             var q = from x in context.Movie select x;
 
-            List<Movie> lst = q.ToList();
+            BindingList<Movie> lst = new BindingList<Movie>(q.ToList());
             dataGridView1.DataSource = lst;
+            dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Format = "c";
+            dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
+            }
         }
         /// <summary>
         /// Retrieve all data from the Movies table with a Lambda expression.
@@ -37,6 +43,8 @@ namespace ef_workshop
             //write lambda expression
             List<Movie> lst = context.Movie.ToList();
             dataGridView1.DataSource = lst;
+            dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Format = "c";
+            dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
         /// <summary>
         /// Retrieve all Movies and display the data in Ascending order of Movie Title with a LINQ query.
@@ -164,7 +172,7 @@ namespace ef_workshop
             //write LINQ Query
             var q = (from x in context.Movie where x.MovieType == "Comedy" select x.RentalPrice).Average();
 
-            label1.Text = q.ToString();
+            label1.Text = String.Format("{0:C}", q);
         }
         /// <summary>
         /// Find the average price of Comedy movies with a Lambda expression.
@@ -174,9 +182,8 @@ namespace ef_workshop
             //write lambda expression
             float? avgRental = context.Movie.Where(x => x.MovieType == "Comedy").Average(x => x.RentalPrice);
 
-            label1.Text = avgRental.ToString();
+            label1.Text = String.Format("{0:C}", avgRental);
         }
-
 
         private void LINQQueryButton_Click(object sender, EventArgs e)
         {
