@@ -1,6 +1,6 @@
 ﻿namespace ef_object_persistence
 {
-    partial class Form1
+    partial class Q1_4
     {
         /// <summary>
         /// Required designer variable.

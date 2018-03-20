@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ef_object_persistence
 {
-    public partial class Form1 : Form
+    public partial class Q1_4 : Form
     {
-        public Form1()
+        public Q1_4()
         {
             InitializeComponent();
         }
