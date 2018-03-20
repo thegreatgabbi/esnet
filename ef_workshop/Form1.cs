@@ -30,10 +30,6 @@ namespace ef_workshop
             dataGridView1.DataSource = lst;
             dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Format = "c";
             dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.Automatic;
-            }
         }
         /// <summary>
         /// Retrieve all data from the Movies table with a Lambda expression.

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BD66D59A-715A-443B-BE7A-FD1FB2263475}</ProjectGuid>
+    <ProjectGuid>{BB855ACB-F88A-456B-BD26-11DB50729B8D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>example_entityframework</RootNamespace>
-    <AssemblyName>example_entityframework</AssemblyName>
+    <RootNamespace>ef_object_persistence</RootNamespace>
+    <AssemblyName>ef_object_persistence</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -54,9 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs">
-      <DependentUpon>DafestyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DafestyModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,19 +75,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Movie.cs">
+      <DependentUpon>DafestyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Producer.cs">
+      <DependentUpon>DafestyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -123,19 +117,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DafestyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DafestyModel.Context.cs</LastGenOutput>
       <DependentUpon>DafestyModel.edmx</DependentUpon>
+      <LastGenOutput>DafestyModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DafestyModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DafestyModel.edmx</DependentUpon>
       <LastGenOutput>DafestyModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

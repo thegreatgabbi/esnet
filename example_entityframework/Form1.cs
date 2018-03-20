@@ -73,5 +73,60 @@ namespace example_entityframework
             decimal? d = context.Customers.Sum(x => x.AmountSpent); // nullable datatypes
             label1.Text = (d).ToString();
         }
+
+        /// <summary>
+        /// Example of LINQ Query returning only selected columns
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //DafestyEntities context = new DafestyEntities();
+            //var q = from x in context.Customers
+            //        select new { x.CustomerID, x.CustomerName, x.MemberRating }; // deriving anonymous class from the Customers class
+            //var q1 = from x in context.Customers select x;
+            //Customer c = q1.First();
+            //dataGridView1.DataSource = q.ToList();
+
+            DafestyEntities context = new DafestyEntities();
+
+            var q = from x in context.Customers
+                    group x by x.MemberRating into g
+                    select new { MemberCategory = g.Key, AMT = g.Sum(y => y.AmountSpent) };
+            dataGridView1.DataSource = q.ToList();
+        }
+
+        /// <summary>
+        /// Demonstration of anonymous objects
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //Car c1 = new Car("Toyota", "cor"); // Using names
+            //Car c2 = new Car("Honda", "City");
+            //Car c3 = new Car("Toyota", "Camry");
+            List<Car> lst = new List<Car>();
+            lst.Add(new Car("Toyota", "cor")); // Look Ma, no variable names!
+            lst.Add(new Car("Honda", "City"));
+            lst.Add(new Car("Toyota", "Camry"));
+
+            //label1.Text = lst[1].model;
+
+
+        }
+
+        class Car
+        {
+            public string model;
+            public string make;
+
+            public Car(string mk, string mdl)
+            {
+                model = mdl;
+                make = mk;
+            }
+        }
+
     }
 }
