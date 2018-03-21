@@ -55,7 +55,10 @@
             "7",
             "8",
             "9",
-            "10"});
+            "10",
+            "11",
+            "12",
+            "13"});
             this.ExerciseComboBox.Location = new System.Drawing.Point(16, 16);
             this.ExerciseComboBox.Name = "ExerciseComboBox";
             this.ExerciseComboBox.Size = new System.Drawing.Size(464, 45);

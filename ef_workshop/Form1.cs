@@ -231,6 +231,40 @@ namespace ef_workshop
         /// </summary>
         private void Q11_Lambda()
         {
+            var q = context.Movies.Where(x => x.VideoCode == 5).Select(y => new { y.MovieTitle, y.Rating, y.Producer.ProducerName });
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Retrieve All movies produced by Walt Disney Studios. You should display the Producer Name, Movie Title and Movie Type with a LINQ Query.
+        /// </summary>
+        private void Q12_LINQ()
+        {
+            var q = from x in context.Movies where x.Producer.ProducerName == "Walt Disney Studio" select new { x.Producer.ProducerName, x.MovieTitle, x.MovieType };
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Retrieve All movies produced by Walt Disney Studios. You should display the Producer Name, Movie Title and Movie Type with a Lambda expression.
+        /// </summary>
+        private void Q12_Lambda()
+        {
+            var q = context.Movies.Where(x => x.Producer.ProducerName == "Walt Disney Studio").Select(x => new { x.Producer.ProducerName, x.MovieTitle, x.MovieType });
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Retrieve all movies and display the MovieTitle, Rating, MovieType and Producer Name in a Grid using a LINQ Query.
+        /// </summary>
+        private void Q13_LINQ()
+        {
+            var q = from x in context.Movies select new { x.MovieTitle, x.Rating, x.MovieType, x.Producer.ProducerName };
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Retrieve all movies and display the MovieTitle, Rating, MovieType and Producer Name in a Grid using a Lambda expression.
+        /// </summary>
+        private void Q13_Lambda()
+        {
+            var q = context.Movies.Select(x => new { x.MovieTitle, x.Rating, x.MovieType, x.Producer.ProducerName });
+            dataGridView1.DataSource = q.ToList();
         }
         private void LINQQueryButton_Click(object sender, EventArgs e)
         {
@@ -266,6 +300,15 @@ namespace ef_workshop
                     break;
                 case "10":
                     Q10_LINQ();
+                    break;
+                case "11":
+                    Q11_LINQ();
+                    break;
+                case "12":
+                    Q12_LINQ();
+                    break;
+                case "13":
+                    Q13_LINQ();
                     break;
                 default:
                     MessageBox.Show("Please select an exercise number.");
@@ -309,6 +352,15 @@ namespace ef_workshop
                     break;
                 case "10":
                     Q10_Lambda();
+                    break;
+                case "11":
+                    Q11_Lambda();
+                    break;
+                case "12":
+                    Q12_Lambda();
+                    break;
+                case "13":
+                    Q13_Lambda();
                     break;
                 default:
                     MessageBox.Show("Please select an exercise number.");
