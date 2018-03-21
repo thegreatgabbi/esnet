@@ -4,10 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="89fdfbbeddf64bd283a03ab21819ddee" Name="Diagram1">
-        <EntityTypeShape EntityType="DafestyModel.Movie" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DafestyModel.Producer" Width="1.5" PointX="3.125" PointY="1.375" />
-        <AssociationConnector Association="DafestyModel.FK_Movies_Producers" />
+      <Diagram DiagramId="d92a340ddd024c2e806a22e675ee51b7" Name="Diagram1">
+        <EntityTypeShape EntityType="DafestyModel.IssueTran" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

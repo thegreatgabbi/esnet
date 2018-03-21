@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C618C3E-6FEA-49E1-A716-D1979B93B83D}</ProjectGuid>
+    <ProjectGuid>{C0C3F267-6B8B-412B-A856-21A7C476813B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ef_workshop</RootNamespace>
-    <AssemblyName>ef_workshop</AssemblyName>
+    <RootNamespace>issuetran_screen</RootNamespace>
+    <AssemblyName>issuetran_screen</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -75,7 +75,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Movie.cs">
+    <Compile Include="IssueTran.cs">
       <DependentUpon>DafestyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />

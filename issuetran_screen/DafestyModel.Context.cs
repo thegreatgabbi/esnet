@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ef_workshop
+namespace issuetran_screen
 {
     using System;
     using System.Data.Entity;
@@ -25,7 +25,6 @@ namespace ef_workshop
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Movie> Movies { get; set; }
-        public virtual DbSet<Producer> Producers { get; set; }
+        public virtual DbSet<IssueTran> IssueTrans { get; set; }
     }
 }

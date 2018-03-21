@@ -12,19 +12,19 @@ namespace ef_workshop
     using System;
     using System.Collections.Generic;
     
-    public partial class Movie
+    public partial class Producer
     {
-        public short VideoCode { get; set; }
-        public string MovieTitle { get; set; }
-        public string MovieType { get; set; }
-        public string Rating { get; set; }
-        public Nullable<float> RentalPrice { get; set; }
-        public string ProducerID { get; set; }
-        public string Director { get; set; }
-        public string Media { get; set; }
-        public Nullable<short> TotalStock { get; set; }
-        public Nullable<short> NumberRented { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Producer()
+        {
+            this.Movies = new HashSet<Movie>();
+        }
     
-        public virtual Producer Producer { get; set; }
+        public string ProducerID { get; set; }
+        public string ProducerName { get; set; }
+        public string CountryCode { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movie> Movies { get; set; }
     }
 }

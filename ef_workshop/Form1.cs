@@ -24,7 +24,7 @@ namespace ef_workshop
         private void Q1_LINQ()
         {
             //write LINQ Query
-            var q = from x in context.Movie select x;
+            var q = from x in context.Movies select x;
 
             BindingList<Movie> lst = new BindingList<Movie>(q.ToList());
             dataGridView1.DataSource = lst;
@@ -37,7 +37,7 @@ namespace ef_workshop
         private void Q1_Lambda()
         {
             //write lambda expression
-            List<Movie> lst = context.Movie.ToList();
+            List<Movie> lst = context.Movies.ToList();
             dataGridView1.DataSource = lst;
             dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Format = "c";
             dataGridView1.Columns["RentalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -48,7 +48,7 @@ namespace ef_workshop
         private void Q2_LINQ()
         {
             //write LINQ Query
-            var q = from x in context.Movie orderby x.MovieTitle ascending select x;
+            var q = from x in context.Movies orderby x.MovieTitle ascending select x;
 
             List<Movie> lst = q.ToList();
             dataGridView1.DataSource = lst;
@@ -59,7 +59,7 @@ namespace ef_workshop
         private void Q2_Lambda()
         {
             //write lambda expression
-            List<Movie> lst = context.Movie.OrderBy(x => x.MovieTitle).ToList();
+            List<Movie> lst = context.Movies.OrderBy(x => x.MovieTitle).ToList();
             dataGridView1.DataSource = lst;
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace ef_workshop
         private void Q3_LINQ()
         {
             //write LINQ Query
-            var q = from x in context.Movie orderby x.RentalPrice descending select x;
+            var q = from x in context.Movies orderby x.RentalPrice descending select x;
 
             List<Movie> lst = q.ToList();
             dataGridView1.DataSource = lst;
@@ -79,7 +79,7 @@ namespace ef_workshop
         private void Q3_Lambda()
         {
             //write lambda expression
-            List<Movie> lst = context.Movie.OrderByDescending(x => x.RentalPrice).ToList();
+            List<Movie> lst = context.Movies.OrderByDescending(x => x.RentalPrice).ToList();
             dataGridView1.DataSource = lst;
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace ef_workshop
         private void Q4_LINQ()
         {
             //write LINQ Query
-            var q = from x in context.Movie where x.Rating == "R" select x;
+            var q = from x in context.Movies where x.Rating == "R" select x;
 
             List<Movie> lst = q.ToList();
             dataGridView1.DataSource = lst;
@@ -99,7 +99,7 @@ namespace ef_workshop
         private void Q4_Lambda()
         {
             //write lambda expression
-            List<Movie> lst = context.Movie.Where(x => x.Rating == "R").ToList();
+            List<Movie> lst = context.Movies.Where(x => x.Rating == "R").ToList();
             dataGridView1.DataSource = lst;
         }
         /// <summary>
@@ -108,7 +108,7 @@ namespace ef_workshop
         private void Q5_LINQ()
         {
             //write LINQ Query
-            var q = from x in context.Movie where x.MovieType == "Sci-fi" && x.ProducerID == "Warner" select x;
+            var q = from x in context.Movies where x.MovieType == "Sci-fi" && x.ProducerID == "Warner" select x;
 
             List<Movie> lst = q.ToList();
             dataGridView1.DataSource = lst;
@@ -119,7 +119,7 @@ namespace ef_workshop
         private void Q5_Lambda()
         {
             //write lambda expression
-            List<Movie> lst = context.Movie.Where(x => x.MovieType == "Sci-fi" && x.ProducerID == "Warner").ToList();
+            List<Movie> lst = context.Movies.Where(x => x.MovieType == "Sci-fi" && x.ProducerID == "Warner").ToList();
             dataGridView1.DataSource = lst;
         }
         /// <summary>
@@ -128,7 +128,7 @@ namespace ef_workshop
         private void Q6_LINQ()
         {
             //write LINQ Query
-            int numAction = (from x in context.Movie where x.MovieType == "Action" select x).Count();
+            int numAction = (from x in context.Movies where x.MovieType == "Action" select x).Count();
 
             label1.Text = numAction.ToString();
         }
@@ -138,7 +138,7 @@ namespace ef_workshop
         private void Q6_Lambda()
         {
             //write lambda expression
-            int numAction = context.Movie.Where(x => x.MovieType == "Action").Count();
+            int numAction = context.Movies.Where(x => x.MovieType == "Action").Count();
             dataGridView1.DataSource = numAction;
         }
         /// <summary>
@@ -147,7 +147,7 @@ namespace ef_workshop
         private void Q7_LINQ()
         {
             //write LINQ Query
-            int totalStock = (from x in context.Movie where x.MovieType == "Action" select (int)x.TotalStock).Sum();
+            int totalStock = (from x in context.Movies where x.MovieType == "Action" select (int)x.TotalStock).Sum();
 
             label1.Text = totalStock.ToString();
         }
@@ -157,7 +157,7 @@ namespace ef_workshop
         private void Q7_Lambda()
         {
             //write lambda expression
-            int totalStock = context.Movie.Where(x => x.MovieType == "Action").Sum(y => (int)y.TotalStock);
+            int totalStock = context.Movies.Where(x => x.MovieType == "Action").Sum(y => (int)y.TotalStock);
             label1.Text = totalStock.ToString();
         }
         /// <summary>
@@ -166,7 +166,7 @@ namespace ef_workshop
         private void Q8_LINQ()
         {
             //write LINQ Query
-            var q = (from x in context.Movie where x.MovieType == "Comedy" select x.RentalPrice).Average();
+            var q = (from x in context.Movies where x.MovieType == "Comedy" select x.RentalPrice).Average();
 
             label1.Text = String.Format("{0:C}", q);
         }
@@ -176,11 +176,62 @@ namespace ef_workshop
         private void Q8_Lambda()
         {
             //write lambda expression
-            float? avgRental = context.Movie.Where(x => x.MovieType == "Comedy").Average(x => x.RentalPrice);
+            float? avgRental = context.Movies.Where(x => x.MovieType == "Comedy").Average(x => x.RentalPrice);
 
             label1.Text = String.Format("{0:C}", avgRental);
         }
-
+        /// <summary>
+        /// Rewrite exercise 4 but you should display only the Video Code, Movie Title and Rental Price with LINQ query.
+        /// </summary>
+        private void Q9_LINQ()
+        {
+            // write LNQ Query
+            var q = from x in context.Movies where x.Rating == "R" select new { x.VideoCode, x.MovieTitle, x.RentalPrice };
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Rewrite exercise 4 but you should display only the Video Code, Movie Title and Rental Price with a Lambda expression.
+        /// </summary>
+        private void Q9_Lambda()
+        {
+            // write LNQ Query
+            var q = context.Movies.Where(x => x.Rating == "R").Select(x => new { x.VideoCode, x.MovieTitle, x.RentalPrice });
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        ///  Rewrite exercise 7 to display the number of copies of movies held in each category. (this would need group by) using LINQ query.
+        /// </summary>
+        private void Q10_LINQ()
+        {
+            // write LINQ Query
+            var q = from x in context.Movies
+                    group x by x.MovieType into g
+                    select new { MovieType = g.Key, Number = g.Sum(y => y.TotalStock)};
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Rewrite exercise 7 to display the number of copies of movies held in each category. (this would need group by) using Lambda expression.
+        /// </summary>
+        private void Q10_Lambda()
+        {
+            var q = context.Movies.GroupBy(x => x.MovieType).Select(g => new { MovieType = g.Key, Number = g.Sum(y => y.TotalStock) });
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Retrieve Movie with ID 5 and display the Movie Title, Rating and Producer Name using LINQ query.
+        /// </summary>
+        private void Q11_LINQ()
+        {
+            // write LINQ query
+            var q = from x in context.Movies where x.VideoCode == 5 select new { x.MovieTitle, x.Rating, x.Producer.ProducerName };
+            dataGridView1.DataSource = q.ToList();
+        }
+        /// <summary>
+        /// Retrieve Movie with ID 5 and display the Movie Title, Rating and Producer Name using Lambda expression.
+        /// </summary>
+        private void Q11_Lambda()
+        {
+        }
         private void LINQQueryButton_Click(object sender, EventArgs e)
         {
 
@@ -209,6 +260,12 @@ namespace ef_workshop
                     break;
                 case "8":
                     Q8_LINQ();
+                    break;
+                case "9":
+                    Q9_LINQ();
+                    break;
+                case "10":
+                    Q10_LINQ();
                     break;
                 default:
                     MessageBox.Show("Please select an exercise number.");
@@ -246,6 +303,12 @@ namespace ef_workshop
                     break;
                 case "8":
                     Q8_Lambda();
+                    break;
+                case "9":
+                    Q9_Lambda();
+                    break;
+                case "10":
+                    Q10_Lambda();
                     break;
                 default:
                     MessageBox.Show("Please select an exercise number.");
