@@ -160,6 +160,7 @@
             this.CustomerLookupButton.TabIndex = 13;
             this.CustomerLookupButton.Text = "...";
             this.CustomerLookupButton.UseVisualStyleBackColor = true;
+            this.CustomerLookupButton.Click += new System.EventHandler(this.CustomerLookupButton_Click);
             // 
             // VideoLookupButton
             // 

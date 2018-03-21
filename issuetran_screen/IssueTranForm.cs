@@ -18,11 +18,23 @@ namespace issuetran_screen
 
     public partial class IssueTranForm : Form
     {
+        public string Cid
+        {
+            get
+            {
+                return CustomerIDTextBox.Text;
+            }
+            set
+            {
+                CustomerIDTextBox.Text = value;
+            }
+        }
         public IssueTranForm()
         {
             InitializeComponent();
             // Due Date = Issue Date + 3 days
             DueDateTimePicker.Value = IssueDateTimePicker.Value.AddDays(3);
+            // initialize value of cid
         }
         /// <summary>
         /// Submits the Issue with RentalStatus "in".
@@ -57,6 +69,13 @@ namespace issuetran_screen
             context.SaveChanges();
 
             MessageBox.Show("Issue Submitted");
+        }
+
+        private void CustomerLookupButton_Click(object sender, EventArgs e)
+        {
+            CustomerLookupScreen s = new CustomerLookupScreen();
+            s.RefToForm1 = this;
+            s.Show();
         }
     }
 }

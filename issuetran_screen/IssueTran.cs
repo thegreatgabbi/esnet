@@ -22,5 +22,7 @@ namespace issuetran_screen
         public Nullable<System.DateTime> DateActualReturn { get; set; }
         public string RentalStatus { get; set; }
         public string Remarks { get; set; }
+    
+        public virtual Customer Customer { get; set; }
     }
 }

@@ -54,6 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs">
+      <DependentUpon>DafestyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLookupScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerLookupScreen.Designer.cs">
+      <DependentUpon>CustomerLookupScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="DafestyModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,19 +78,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DafestyModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="IssueTranForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="IssueTranForm.Designer.cs">
+      <DependentUpon>IssueTranForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IssueTran.cs">
       <DependentUpon>DafestyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="CustomerLookupScreen.resx">
+      <DependentUpon>CustomerLookupScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueTranForm.resx">
+      <DependentUpon>IssueTranForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -26,5 +26,6 @@ namespace issuetran_screen
         }
     
         public virtual DbSet<IssueTran> IssueTrans { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

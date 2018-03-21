@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d92a340ddd024c2e806a22e675ee51b7" Name="Diagram1">
-        <EntityTypeShape EntityType="DafestyModel.IssueTran" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DafestyModel.IssueTran" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DafestyModel.Customer" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="DafestyModel.FK_IssueTran_Customers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
