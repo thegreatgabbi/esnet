@@ -10,15 +10,22 @@ using System.Windows.Forms;
 
 namespace issuetran_screen
 {
-    // TODO: Add IssueTran to EDM (Entity Domain Model)
+    // DONE: Add IssueTran to EDM (Entity Domain Model)
+    // DONE: Design IssueTranScreen
+    // TODO: Design Customer Lookup Screen
+    // TODO: Design Video Lookup Screen
+    // DONE: Make Due Date Default to Issue Date + 3 days
+
     public partial class IssueTranForm : Form
     {
         public IssueTranForm()
         {
             InitializeComponent();
+            // Due Date = Issue Date + 3 days
+            DueDateTimePicker.Value = IssueDateTimePicker.Value.AddDays(3);
         }
         /// <summary>
-        /// Submits the Issue (Rental only)
+        /// Submits the Issue with RentalStatus "in".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -26,8 +33,8 @@ namespace issuetran_screen
         {
             string cid = CustomerIDTextBox.Text;
             string vcode = VideoCodeTextBox.Text;
-            string issuedate = IssueDateTimePicker.Text;
-            string duedate = DueDateTimePicker.Text;
+            DateTime issuedate = IssueDateTimePicker.Value;
+            DateTime duedate = DueDateTimePicker.Value;
             string remarks = RemarksTextBox.Text;
 
             // create LINQ Query with CustomerIDTextBox, VideoCodeTextBox, IssueDateTimePicker, DueDateTimePicker
@@ -41,8 +48,8 @@ namespace issuetran_screen
             IssueTran t = new IssueTran();
             t.CustomerID = cid;
             t.VideoCode = Convert.ToInt16(vcode);
-            t.DateIssue = Convert.ToDateTime(issuedate);
-            t.DateDue = Convert.ToDateTime(duedate);
+            t.DateIssue = issuedate;
+            t.DateDue = duedate;
             t.Remarks = remarks;
             t.RentalStatus = "in";
 

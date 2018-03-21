@@ -106,14 +106,14 @@
             // 
             this.IssueDateTimePicker.Location = new System.Drawing.Point(224, 320);
             this.IssueDateTimePicker.Name = "IssueDateTimePicker";
-            this.IssueDateTimePicker.Size = new System.Drawing.Size(336, 31);
+            this.IssueDateTimePicker.Size = new System.Drawing.Size(416, 31);
             this.IssueDateTimePicker.TabIndex = 7;
             // 
             // DueDateTimePicker
             // 
             this.DueDateTimePicker.Location = new System.Drawing.Point(224, 368);
             this.DueDateTimePicker.Name = "DueDateTimePicker";
-            this.DueDateTimePicker.Size = new System.Drawing.Size(336, 31);
+            this.DueDateTimePicker.Size = new System.Drawing.Size(416, 31);
             this.DueDateTimePicker.TabIndex = 9;
             // 
             // DueDateLabel
@@ -154,18 +154,18 @@
             // 
             // CustomerLookupButton
             // 
-            this.CustomerLookupButton.Location = new System.Drawing.Point(400, 96);
+            this.CustomerLookupButton.Location = new System.Drawing.Point(400, 80);
             this.CustomerLookupButton.Name = "CustomerLookupButton";
-            this.CustomerLookupButton.Size = new System.Drawing.Size(48, 32);
+            this.CustomerLookupButton.Size = new System.Drawing.Size(64, 48);
             this.CustomerLookupButton.TabIndex = 13;
             this.CustomerLookupButton.Text = "...";
             this.CustomerLookupButton.UseVisualStyleBackColor = true;
             // 
             // VideoLookupButton
             // 
-            this.VideoLookupButton.Location = new System.Drawing.Point(400, 208);
+            this.VideoLookupButton.Location = new System.Drawing.Point(400, 192);
             this.VideoLookupButton.Name = "VideoLookupButton";
-            this.VideoLookupButton.Size = new System.Drawing.Size(48, 32);
+            this.VideoLookupButton.Size = new System.Drawing.Size(64, 48);
             this.VideoLookupButton.TabIndex = 14;
             this.VideoLookupButton.Text = "...";
             this.VideoLookupButton.UseVisualStyleBackColor = true;
