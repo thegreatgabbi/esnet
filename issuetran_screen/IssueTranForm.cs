@@ -29,6 +29,40 @@ namespace issuetran_screen
                 CustomerIDTextBox.Text = value;
             }
         }
+        public string Cname
+        {
+            get
+            {
+                return CustomerNameTextBox.Text;
+            }
+            set
+            {
+                CustomerNameTextBox.Text = value;
+            }
+        }
+        public string VCode
+        {
+            get
+            {
+                return VideoCodeTextBox.Text;
+            }
+            set
+            {
+                VideoCodeTextBox.Text = value;
+            }
+        }
+        public string MvTitle
+        {
+            get
+            {
+                return MovieTitleTextBox.Text;
+            }
+            set
+            {
+                MovieTitleTextBox.Text = value;
+            }
+        }
+
         public IssueTranForm()
         {
             InitializeComponent();
@@ -43,38 +77,54 @@ namespace issuetran_screen
         /// <param name="e"></param>
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            string cid = CustomerIDTextBox.Text;
-            string vcode = VideoCodeTextBox.Text;
-            DateTime issuedate = IssueDateTimePicker.Value;
-            DateTime duedate = DueDateTimePicker.Value;
-            string remarks = RemarksTextBox.Text;
+            if (CustomerIDTextBox.Text != "" &&
+                VideoCodeTextBox.Text != "")
+            {
+                string cid = CustomerIDTextBox.Text;
+                string vcode = VideoCodeTextBox.Text;
+                DateTime issuedate = IssueDateTimePicker.Value;
+                DateTime duedate = DueDateTimePicker.Value;
+                string remarks = RemarksTextBox.Text;
 
-            // create LINQ Query with CustomerIDTextBox, VideoCodeTextBox, IssueDateTimePicker, DueDateTimePicker
+                // create LINQ Query with CustomerIDTextBox, VideoCodeTextBox, IssueDateTimePicker, DueDateTimePicker
 
-            // instantiate context
-            DafestyEntities context = new DafestyEntities();
+                // instantiate context
+                DafestyEntities context = new DafestyEntities();
 
-            // Since you're not displaying information, you don't need a query obj
+                // Since you're not displaying information, you don't need a query obj
 
-            // create new tran
-            IssueTran t = new IssueTran();
-            t.CustomerID = cid;
-            t.VideoCode = Convert.ToInt16(vcode);
-            t.DateIssue = issuedate;
-            t.DateDue = duedate;
-            t.Remarks = remarks;
-            t.RentalStatus = "in";
+                // create new tran
+                IssueTran t = new IssueTran();
+                t.CustomerID = cid;
+                t.VideoCode = Convert.ToInt16(vcode);
+                t.DateIssue = issuedate;
+                t.DateDue = duedate;
+                if (remarks != "")
+                {
+                    t.Remarks = remarks;
+                }
+                t.RentalStatus = "in";
 
-            context.IssueTrans.Add(t);
-            context.SaveChanges();
+                context.IssueTrans.Add(t);
+                context.SaveChanges();
 
-            MessageBox.Show("Issue Submitted");
+                MessageBox.Show("Issue Submitted");
+            } else
+            {
+                toolStripStatusLabel1.Text = "Please enter Customer ID and Video Code.";
+            }
         }
 
         private void CustomerLookupButton_Click(object sender, EventArgs e)
         {
             CustomerLookupScreen s = new CustomerLookupScreen();
-            s.RefToForm1 = this;
+            s.refIssueTran = this;
+            s.Show();
+        }
+        private void VideoLookupButton_Click(object sender, EventArgs e)
+        {
+            VideoLookupScreen s = new VideoLookupScreen();
+            s.refIssueTran = this;
             s.Show();
         }
     }

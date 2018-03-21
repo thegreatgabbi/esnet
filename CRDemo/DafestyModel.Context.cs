@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace issuetran_screen
+namespace CRDemo
 {
     using System;
     using System.Data.Entity;
@@ -25,8 +25,6 @@ namespace issuetran_screen
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<IssueTran> IssueTrans { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Movie> Movies { get; set; }
     }
 }

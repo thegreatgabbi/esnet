@@ -12,30 +12,30 @@ namespace issuetran_screen
 {
     // TODO: Event handler for OK Button
     // TODO: Event handler for Cancel Button
-    public partial class CustomerLookupScreen : Form
+    public partial class VideoLookupScreen : Form
     {
         public IssueTranForm refIssueTran;
         DafestyEntities context;
-        public CustomerLookupScreen()
+        public VideoLookupScreen()
         {
             InitializeComponent();
             // linq query
             context = new DafestyEntities();
-            var q = from x in context.Customers select x;
+            var q = from x in context.Movies select x;
             // display in datagridview
-            CustomerDataGridView.DataSource = q.ToList();
+            VideoDataGridView.DataSource = q.ToList();
         }
         private void OKButton_Click(object sender, EventArgs e)
         {
             // get selected index
-            int selected = CustomerDataGridView.CurrentCell.RowIndex;
-            // get the value of CustomerID and CustomerName from query
-            var q = from x in context.Customers select x;
-            List<Customer> l = q.ToList();
+            int selected = VideoDataGridView.CurrentCell.RowIndex;
+            // get the value of VideoCode and MovieTitle from query
+            var q = from x in context.Movies select x;
+            List<Movie> l = q.ToList();
 
             // set Form1.CustomerIDTextBox.Text = selected row
-            refIssueTran.Cid = l[selected].CustomerID;
-            refIssueTran.Cname = l[selected].CustomerName;
+            refIssueTran.VCode = l[selected].VideoCode.ToString();
+            refIssueTran.MvTitle = l[selected].MovieTitle.ToString();
 
             Close();
         }

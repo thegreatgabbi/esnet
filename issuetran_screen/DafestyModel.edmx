@@ -39,6 +39,21 @@
           <Property Name="RentalStatus" Type="nvarchar" MaxLength="3" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="VideoCode" />
+          </Key>
+          <Property Name="VideoCode" Type="smallint" Nullable="false" />
+          <Property Name="MovieTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="MovieType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Rating" Type="nvarchar" MaxLength="3" />
+          <Property Name="RentalPrice" Type="real" />
+          <Property Name="ProducerID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
+          <Property Name="Media" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalStock" Type="smallint" />
+          <Property Name="NumberRented" Type="smallint" />
+        </EntityType>
         <Association Name="FK_IssueTran_Customers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="IssueTran" Type="Self.IssueTran" Multiplicity="*" />
@@ -51,11 +66,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IssueTran_Movies1">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+          <End Role="IssueTran" Type="Self.IssueTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="VideoCode" />
+            </Principal>
+            <Dependent Role="IssueTran">
+              <PropertyRef Name="VideoCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DafestyModelStoreContainer">
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IssueTran" EntityType="Self.IssueTran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_IssueTran_Customers" Association="Self.FK_IssueTran_Customers">
             <End Role="Customers" EntitySet="Customers" />
+            <End Role="IssueTran" EntitySet="IssueTran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueTran_Movies1" Association="Self.FK_IssueTran_Movies1">
+            <End Role="Movies" EntitySet="Movies" />
             <End Role="IssueTran" EntitySet="IssueTran" />
           </AssociationSet>
         </EntityContainer>
@@ -76,12 +108,18 @@
           <Property Name="RentalStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="DafestyModel.FK_IssueTran_Customers" FromRole="IssueTran" ToRole="Customer" />
+          <NavigationProperty Name="Movy" Relationship="DafestyModel.FK_IssueTran_Movies1" FromRole="IssueTran" ToRole="Movy" />
         </EntityType>
         <EntityContainer Name="DafestyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="IssueTrans" EntityType="Self.IssueTran" />
           <EntitySet Name="Customers" EntityType="DafestyModel.Customer" />
           <AssociationSet Name="FK_IssueTran_Customers" Association="DafestyModel.FK_IssueTran_Customers">
             <End Role="Customer" EntitySet="Customers" />
+            <End Role="IssueTran" EntitySet="IssueTrans" />
+          </AssociationSet>
+          <EntitySet Name="Movies" EntityType="DafestyModel.Movie" />
+          <AssociationSet Name="FK_IssueTran_Movies1" Association="DafestyModel.FK_IssueTran_Movies1">
+            <End Role="Movy" EntitySet="Movies" />
             <End Role="IssueTran" EntitySet="IssueTrans" />
           </AssociationSet>
         </EntityContainer>
@@ -116,6 +154,34 @@
             </Principal>
             <Dependent Role="IssueTran">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="VideoCode" />
+          </Key>
+          <Property Name="VideoCode" Type="Int16" Nullable="false" />
+          <Property Name="MovieTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MovieType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="RentalPrice" Type="Single" />
+          <Property Name="ProducerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Media" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalStock" Type="Int16" />
+          <Property Name="NumberRented" Type="Int16" />
+          <NavigationProperty Name="IssueTrans" Relationship="DafestyModel.FK_IssueTran_Movies1" FromRole="Movy" ToRole="IssueTran" />
+        </EntityType>
+        <Association Name="FK_IssueTran_Movies1">
+          <End Type="DafestyModel.Movie" Role="Movy" Multiplicity="0..1" />
+          <End Type="DafestyModel.IssueTran" Role="IssueTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movy">
+              <PropertyRef Name="VideoCode" />
+            </Principal>
+            <Dependent Role="IssueTran">
+              <PropertyRef Name="VideoCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -158,6 +224,22 @@
                 <ScalarProperty Name="MemberCategory" ColumnName="MemberCategory" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="DafestyModel.Movie">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="NumberRented" ColumnName="NumberRented" />
+                <ScalarProperty Name="TotalStock" ColumnName="TotalStock" />
+                <ScalarProperty Name="Media" ColumnName="Media" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+                <ScalarProperty Name="RentalPrice" ColumnName="RentalPrice" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="MovieType" ColumnName="MovieType" />
+                <ScalarProperty Name="MovieTitle" ColumnName="MovieTitle" />
+                <ScalarProperty Name="VideoCode" ColumnName="VideoCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

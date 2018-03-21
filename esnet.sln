@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ef_object_persistence", "ef
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "issuetran_screen", "issuetran_screen\issuetran_screen.csproj", "{C0C3F267-6B8B-412B-A856-21A7C476813B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRDemo", "CRDemo\CRDemo.csproj", "{B9F3B91F-0E47-4EA7-8255-2001CF568842}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{C0C3F267-6B8B-412B-A856-21A7C476813B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0C3F267-6B8B-412B-A856-21A7C476813B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0C3F267-6B8B-412B-A856-21A7C476813B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F3B91F-0E47-4EA7-8255-2001CF568842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F3B91F-0E47-4EA7-8255-2001CF568842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F3B91F-0E47-4EA7-8255-2001CF568842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F3B91F-0E47-4EA7-8255-2001CF568842}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

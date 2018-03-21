@@ -1,6 +1,6 @@
 ﻿namespace issuetran_screen
 {
-    partial class CustomerLookupScreen
+    partial class VideoLookupScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CustomerDataGridView = new System.Windows.Forms.DataGridView();
+            this.VideoDataGridView = new System.Windows.Forms.DataGridView();
             this.OKButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VideoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // CustomerDataGridView
+            // VideoDataGridView
             // 
-            this.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CustomerDataGridView.Location = new System.Drawing.Point(48, 64);
-            this.CustomerDataGridView.Name = "CustomerDataGridView";
-            this.CustomerDataGridView.RowTemplate.Height = 33;
-            this.CustomerDataGridView.Size = new System.Drawing.Size(1040, 608);
-            this.CustomerDataGridView.TabIndex = 0;
+            this.VideoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.VideoDataGridView.Location = new System.Drawing.Point(48, 64);
+            this.VideoDataGridView.Name = "VideoDataGridView";
+            this.VideoDataGridView.RowTemplate.Height = 33;
+            this.VideoDataGridView.Size = new System.Drawing.Size(1040, 608);
+            this.VideoDataGridView.TabIndex = 0;
             // 
             // OKButton
             // 
@@ -63,24 +63,24 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // CustomerLookupScreen
+            // VideoLookupScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 777);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OKButton);
-            this.Controls.Add(this.CustomerDataGridView);
-            this.Name = "CustomerLookupScreen";
-            this.Text = "CustomerLookupScreen";
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).EndInit();
+            this.Controls.Add(this.VideoDataGridView);
+            this.Name = "VideoLookupScreen";
+            this.Text = "VideoLookupScreen";
+            ((System.ComponentModel.ISupportInitialize)(this.VideoDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView CustomerDataGridView;
+        private System.Windows.Forms.DataGridView VideoDataGridView;
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.Button CancelButton;
     }

@@ -43,6 +43,9 @@
             this.SubmitButton = new System.Windows.Forms.Button();
             this.CustomerLookupButton = new System.Windows.Forms.Button();
             this.VideoLookupButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CustomerIDLabel
@@ -170,12 +173,31 @@
             this.VideoLookupButton.TabIndex = 14;
             this.VideoLookupButton.Text = "...";
             this.VideoLookupButton.UseVisualStyleBackColor = true;
+            this.VideoLookupButton.Click += new System.EventHandler(this.VideoLookupButton_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 750);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(874, 37);
+            this.statusStrip1.TabIndex = 15;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(238, 32);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // IssueTranForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 757);
+            this.ClientSize = new System.Drawing.Size(874, 787);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.VideoLookupButton);
             this.Controls.Add(this.CustomerLookupButton);
             this.Controls.Add(this.SubmitButton);
@@ -193,6 +215,8 @@
             this.Controls.Add(this.CustomerIDLabel);
             this.Name = "IssueTranForm";
             this.Text = "Issue Transaction";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,6 +239,8 @@
         private System.Windows.Forms.Button SubmitButton;
         private System.Windows.Forms.Button CustomerLookupButton;
         private System.Windows.Forms.Button VideoLookupButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

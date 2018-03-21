@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="DafestyModel.IssueTran" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DafestyModel.Customer" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="DafestyModel.FK_IssueTran_Customers" />
+        <EntityTypeShape EntityType="DafestyModel.Movie" Width="1.5" PointX="5.375" PointY="1.625" />
+        <AssociationConnector Association="DafestyModel.FK_IssueTran_Movies1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
